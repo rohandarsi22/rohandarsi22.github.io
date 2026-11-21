@@ -40,7 +40,7 @@
         </div>
         <div class="skills-card">
             <h2>Skills Used</h2>
-            <div class="skills-list"><span class="skill">Fusion 360</span><span class="skill">Tolerance analysis</span><span class="skill">Ratchet and pawl</span><span class="skill">3D printing</span></div>
+            <div class="skills-list"><span class="skill">Fusion 360</span><span class="skill">Ansys Mechanical</span><span class="skill">Hand calculations</span><span class="skill">Tolerance analysis</span><span class="skill">Ratchet and pawl</span><span class="skill">3D printing</span></div>
         </div>
     </div>
     <div class="content">
@@ -58,6 +58,30 @@
 <div class="step"><span class="label">MECHANISM</span><h3>Custom spring</h3><p>Fabricated the core mechanism parts myself, including the torsion spring, to get a reliable wind every time.</p></div>
 <div class="step"><span class="label">TESTING</span><h3>Fit and function rounds</h3><p>Reprinted and adjusted parts through multiple test rounds until the toy wound and ran consistently.</p></div>
 </div>
+
+<h2>Spring analysis (Nov 2026)</h2>
+<p>I went back to the spiral spring to check how far it can be wound before it yields. The spring is a 1.0 mm thick, 8 mm wide strip about 247 mm long, coiled about 4 turns between a hub with a D-shaped bore and an eye that pins to the chassis. I compared a beam theory hand calculation against a nonlinear static analysis in Ansys Mechanical, using PETG data sheet properties (E = 2020 MPa, yield strength 50.4 MPa).</p>
+
+<div class="stats">
+<div class="stat"><b>5.45</b><span>N·mm/rad, beam theory stiffness: M/θ = E·b·t³ / (12L)</span></div>
+<div class="stat"><b>±10%</b><span>FEA stiffness vs. the hand calc, for both eye supports</span></div>
+<div class="stat"><b>1.5×</b><span>Peak stress vs. the beam theory prediction, on the outer coil</span></div>
+<div class="stat"><b>~1.3 turns</b><span>Predicted wind before yield, vs. 2.0 turns from beam theory</span></div>
+</div>
+
+<div class="steps">
+<div class="step"><span class="label">01 · HAND CALC</span><h3>Beam theory</h3><p>Measured the strip in Fusion 360 and treated it as a beam in pure bending. That predicts a constant stiffness of 5.45 N·mm/rad and a bending stress of σ = E·t·θ / (2L), which reaches yield after about 2.0 turns.</p></div>
+<div class="step"><span class="label">02 · FEA SETUP</span><h3>Nonlinear static model</h3><p>Rotated the D-bore with a rigid remote displacement and held the eye, with large deflection on. Swept the mesh to keep 2 elements through the 1 mm thickness while staying under the student license node limit (67k nodes).</p></div>
+<div class="step"><span class="label">03 · SENSITIVITY</span><h3>Fixed vs. pinned eye</h3><p>Ran the eye both fixed and free to pivot on its pin. Fixed gave a constant 6.01 N·mm/rad (10% stiffer than beam theory, between the beam and plate limits). Pinned started 18% softer and stiffened as it wound.</p></div>
+</div>
+
+<div class="figs wide">
+<figure><img src="/images/t_stress.png" alt="Ansys equivalent stress plot of the spiral spring at 28.5 degrees of wind with the eye pinned, peak stress on the outer coil"><figcaption>Von Mises stress at 28.5° with the eye pinned. Peak (3.1 MPa) is on the outer coil; the hub stays low stress.</figcaption></figure>
+<figure><img src="/images/t_charts.png" alt="Charts of winding torque and peak stress versus wind angle comparing beam theory to FEA with fixed and pinned eye"><figcaption>Torque tracks beam theory closely, but peak stress runs about 1.5× higher for both supports.</figcaption></figure>
+</div>
+
+<p><strong>What I learned:</strong> the hand calc gets the stiffness right but underestimates the peak stress, because the eye pushes back with a force as well as a moment, so the outer coil carries more bending than the beam formula assumes. That lowers the safe wind from about 2.0 turns to about 1.3. I first suspected a stress concentration where the strip meets the hub, but a fillet test in Fusion showed the strip already leaves the hub almost tangent, and the stress plot confirmed the hub region is lightly loaded.</p>
+<p class="note">Limits: printed PETG treated as isotropic with data sheet properties; coil to coil contact not modeled; the yield estimate extrapolates linearly beyond the solved range (up to 64°).</p>
 
     </div>
     <a class="back" href="/projects/">← All projects</a>
