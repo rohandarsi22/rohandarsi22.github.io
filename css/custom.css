@@ -223,3 +223,13 @@
 @media (max-width: 768px) {
     .post-view .back { margin: 0 5px 20px 5px; }
 }
+
+/* Full-width figures for wide images (plots, charts) */
+.post-view .content .figs.wide {
+    grid-template-columns: 1fr;
+}
+.post-view .content .figs.wide figure img {
+    aspect-ratio: auto;
+    height: auto;
+    background: none;
+}
