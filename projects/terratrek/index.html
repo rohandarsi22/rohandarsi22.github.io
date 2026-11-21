@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraTrek: a stair climbing robot for terraced farmland | Rohan Darsi</title>
+    <meta name="description" content="Terraced farms are still worked mostly by hand because wheeled machines need level ground. Our team is building a small legged robot that climbs 1:4 r">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <script src="/assets/js/script.js"></script>
+</head>
+<body>
+<nav>
+    <div class="left"><a href="/">Rohan Darsi</a></div>
+    <div class="right desktop-nav">
+        <a href="/"><span>Home</span></a>
+        <a href="/projects/"><span>Projects</span></a>
+        <a href="/#contact"><span>Contact</span></a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu"><i class="fa fa-bars fa-2x"></i></button>
+    <div class="mobile-nav">
+        <a href="/"><span>Home</span></a>
+        <a href="/projects/"><span>Projects</span></a>
+        <a href="/#contact"><span>Contact</span></a>
+    </div>
+</nav>
+<div class="page">
+<div class="post-view">
+    <div class="summary">
+        <img src="/images/w1.png" class="contain" alt="TerraTrek: a stair climbing robot for terraced farmland image">
+        <div class="title-header"><h1>TerraTrek: a stair climbing robot for terraced farmland</h1></div>
+        <p class="meta">ME 370 Mechanical Design · Fall 2026 · Team of 4</p>
+        <div class="project-description">
+            <h2>Project Overview</h2>
+            <p>Terraced farms are still worked mostly by hand because wheeled machines need level ground. Our team is building a small legged robot that climbs 1:4 ramps and steps up to 4.0 cm tall and 8 cm deep while planting seeds along the way. It has to fit in an 18 × 18 × 24 cm box, run on one motor, use at most eight legs, and stay under a $60 budget. Every leg is a crank-rocker four-bar linkage, and the drivetrain, linkages, and seed mechanism were all modeled in Fusion 360 and backed by analysis.</p>
+        </div>
+        <div class="skills-card">
+            <h2>Skills Used</h2>
+            <div class="skills-list"><span class="skill">Fusion 360</span><span class="skill">Four-bar linkage synthesis</span><span class="skill">PVA and instant centers</span><span class="skill">Motor testing</span><span class="skill">Gear train sizing</span><span class="skill">3D printing</span></div>
+        </div>
+    </div>
+    <div class="content">
+
+<h2>Current design</h2>
+<div class="figs">
+<figure><img src="/images/w3.png" alt="Side view of the six-leg walker showing the four-bar leg linkages"><figcaption>Current six-leg version: crank-rocker legs with claw-shaped couplers.</figcaption></figure>
+<figure><img src="/images/w4.png" alt="Front view of the walker showing gear trains on both sides of the chassis"><figcaption>Front view: gear trains drive the legs on both sides of the chassis.</figcaption></figure>
+</div>
+
+<h2>Printed prototype</h2>
+<div class="video-row">
+<video src="/images/walker_prototype.mp4" poster="/images/walker_prototype_poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Video of the printed walker prototype: the motor turns the gear train and drives one claw leg through its step"></video>
+<div><p>The first print of the current design, with the motor powering the gear train on both sides of the chassis and a claw leg cycling through its step. Getting a real leg moving let us check gear mesh, shaft fits, and the foot path on physical parts before printing the full set of legs.</p></div>
+</div>
+
+<h2>Key numbers</h2>
+<div class="stats">
+<div class="stat"><b>76 mm</b><span>Stride per crank turn, with about 3.7 cm of foot lift</span></div>
+<div class="stat"><b>0.392</b><span>Duty factor from the PVA sweep</span></div>
+<div class="stat"><b>102:1</b><span>Total reduction, for about 7 cm/s walking speed</span></div>
+<div class="stat"><b>$31.66</b><span>Bill of materials against a $60 budget</span></div>
+</div>
+<p class="note">Figures below are from the first design review, when the robot had four legs in a trot gait.</p>
+
+<h2>Analysis</h2>
+<div class="steps">
+<div class="step"><span class="label">01 · LEG KINEMATICS</span><h3>Four-bar foot path</h3><p>Ground 7.0 cm, crank 2.2 cm, coupler 5.5 cm, rocker 4.5 cm, with the foot on a coupler extension. We wrote the vector loop in complex form and solved position, velocity, and acceleration over full crank cycles in code.</p></div>
+<div class="step"><span class="label">02 · INSTANT CENTERS</span><h3>Where the leg is weakest</h3><p>Checked four critical points in the gait. Mechanical advantage is 59.3 m⁻¹ at foot strike but drops to 17.0 m⁻¹ at mid-stance. The instant center results matched our PVA code to within 0.01%.</p></div>
+<div class="step"><span class="label">03 · MOTOR TESTING</span><h3>Torque vs. speed</h3><p>Load tested the 34:1 gearmotor at 9 V and 12 V. Linear fits had R² above 0.999, and we took stall torque from the datasheet because our brake only reached about 3% of stall.</p></div>
+</div>
+<div class="figs">
+<figure><img src="/images/w_footpath.jpg" alt="Four-bar leg linkage diagram with the traced foot path"><figcaption>Leg linkage and the traced foot path.</figcaption></figure>
+<figure><img src="/images/w_pva.jpg" alt="Foot position, velocity, and acceleration over a crank cycle with contact and lift phases"><figcaption>Foot position, velocity, and acceleration with contact phases marked.</figcaption></figure>
+<figure><img src="/images/w_ic.jpg" alt="Instant center analysis at four critical leg configurations"><figcaption>Instant centers at attack, mid-stance, exit, and mid-lift.</figcaption></figure>
+</div>
+
+<div class="steps">
+<div class="step"><span class="label">04 · GEAR RATIO</span><h3>Sized for the worst case</h3><p>Sized the gears using the low mechanical advantage at the end of stance instead of an average. Any ratio from about 1 to 9.5 worked. A 3:1 stage kept the motor at 16% of stall at peak load with a 6.2× torque margin.</p></div>
+<div class="step"><span class="label">05 · SEED DROP</span><h3>One seed per step</h3><p>A one-pocket seed wheel under a hopper turns once per crank turn, driven off the motor pinion instead of the leg crank. A 7.6 cm stride on 8.0 cm steps drifts only 0.4 cm per step, so every seed still lands on the tread.</p></div>
+<div class="step"><span class="label">06 · ITERATION</span><h3>From four legs to six</h3><p>Design review feedback called for more reduction and gear drive on both sides of the chassis. That pushed us to the current six-leg layout with a simpler, printable gear train.</p></div>
+</div>
+<div class="figs">
+<figure><img src="/images/w_torque.jpg" alt="Motor torque versus speed at 9 V and 12 V with linear best fit lines"><figcaption>Measured torque vs. speed with best fit lines.</figcaption></figure>
+<figure><img src="/images/w_gears.png" alt="Current six-leg walker gear train with the chassis and legs hidden"><figcaption>Current gear train, chassis and legs hidden: one motor drives the leg shafts on both sides.</figcaption></figure>
+<figure><img src="/images/w_gait.jpg" alt="Gait diagram showing which feet are on the ground through two crank revolutions"><figcaption>Trot gait: diagonal pairs alternate support.</figcaption></figure>
+</div>
+
+    </div>
+    <a class="back" href="/projects/">← All projects</a>
+</div>
+</div>
+<footer>
+    <div class="footer-content">
+        <div class="links">
+            <a href="/"><span>Home</span></a>
+            <a href="/projects/"><span>Projects</span></a>
+            <a href="/#contact"><span>Contact</span></a>
+        </div>
+    </div>
+    <div class="license">
+        <p>Rohan Darsi · Mechanical Engineering, UIUC · Class of 2028</p>
+        <p>Site built on the FreeToEngineer portfolio template © 2025 by lowinertia.com, licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1">CC BY 4.0</a></p>
+    </div>
+</footer>
+</body>
+</html>
