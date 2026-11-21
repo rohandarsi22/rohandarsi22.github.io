@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HangaShelf: reverse engineering a molded stool into a new product | Rohan Darsi</title>
+    <meta name="description" content="I took apart a discarded foldable stool made of injection-molded polypropylene, rebuilt all five unique panels in Fusion 360 from measurements, and re">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <script src="/assets/js/script.js"></script>
+</head>
+<body>
+<nav>
+    <div class="left"><a href="/">Rohan Darsi</a></div>
+    <div class="right desktop-nav">
+        <a href="/"><span>Home</span></a>
+        <a href="/projects/"><span>Projects</span></a>
+        <a href="/assets/resume/resume.pdf" target="_blank" rel="noopener noreferrer"><span>Resume</span></a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu"><i class="fa fa-bars fa-2x"></i></button>
+    <div class="mobile-nav">
+        <a href="/"><span>Home</span></a>
+        <a href="/projects/"><span>Projects</span></a>
+        <a href="/assets/resume/resume.pdf" target="_blank" rel="noopener noreferrer"><span>Resume</span></a>
+    </div>
+</nav>
+<div class="page">
+<div class="post-view">
+    <div class="summary">
+        <img src="/images/caddy_photo.jpg" alt="HangaShelf: reverse engineering a molded stool into a new product image">
+        <div class="title-header"><h1>HangaShelf: reverse engineering a molded stool into a new product</h1></div>
+        <p class="meta">ME 270 Design for Manufacturability · Dec 2025</p>
+        <div class="project-description">
+            <h2>Project Overview</h2>
+            <p>I took apart a discarded foldable stool made of injection-molded polypropylene, rebuilt all five unique panels in Fusion 360 from measurements, and redesigned the parts into a hanging bedside caddy for a specific user. The final product uses no new molded parts and no fasteners, and every panel I didn&#x27;t reuse goes to PP recycling.</p>
+        </div>
+        <div class="skills-card">
+            <h2>Skills Used</h2>
+            <div class="skills-list"><span class="skill">Fusion 360</span><span class="skill">GD&amp;T drawings</span><span class="skill">Weighted decision matrices</span><span class="skill">Measurement study</span><span class="skill">DFA</span></div>
+        </div>
+    </div>
+    <div class="content">
+
+<h2>From stool to caddy</h2>
+<div class="figs">
+<figure><img src="/images/stool_original.jpg" alt="Original foldable plastic step stool"><figcaption>The starting point: a foldable PP step stool.</figcaption></figure>
+<figure><img src="/images/stool_cad.jpg" alt="Fusion 360 model of the reverse engineered stool assembly"><figcaption>All five panels reverse engineered and reassembled in CAD.</figcaption></figure>
+<figure><img src="/images/caddy_photo.jpg" alt="Finished hanging caddy prototype hung from a bed frame"><figcaption>Finished prototype hanging from a bed frame.</figcaption></figure>
+</div>
+
+<h2>Process</h2>
+<div class="steps">
+<div class="step"><span class="label">01 · TEARDOWN</span><h3>Bill of materials</h3><p>Broke the stool into 5 unique PP panels and documented each one's material, process (injection molding), quantity, and estimated unit cost of $0.18 to $0.25.</p></div>
+<div class="step"><span class="label">02 · CAD</span><h3>Drawings with GD&amp;T</h3><p>Modeled every panel from measurements and produced dimensioned engineering drawings with GD&amp;T callouts for the parts the new design reuses.</p></div>
+<div class="step"><span class="label">03 · SELECTION</span><h3>10 concepts, 2 matrices</h3><p>Scored 10 repurposing ideas against a bedside table datum, then compared the top two on the product spec. The hanging caddy scored +22 against +6 for a vertical tower.</p></div>
+</div>
+<div class="figs">
+<figure><img src="/images/panel_drawing.jpg" alt="Engineering drawing of the large side panel with GD&amp;T callouts"><figcaption>Engineering drawing of the large side panel.</figcaption></figure>
+<figure><img src="/images/concepts.jpg" alt="Hand sketches of early repurposing concepts"><figcaption>Early concept sketches before the decision matrix.</figcaption></figure>
+</div>
+
+<div class="steps">
+<div class="step"><span class="label">04 · PROTOTYPE</span><h3>Iterating on the build</h3><p>Switched from one continuous string to four strings tied to the existing molded notches. Assembly got easier and the load spread more evenly. Added insertable sockets so small items don't fall through.</p></div>
+<div class="step"><span class="label">05 · MEASUREMENT</span><h3>15 samples per dimension</h3><p>Took 15 repeat measurements on four critical dimensions with a tape measure and calipers, then reported mean, standard deviation, and a confidence interval for each.</p></div>
+<div class="step"><span class="label">06 · DFA REVIEW</span><h3>Zero fasteners</h3><p>A theoretical minimum of 5 parts, one assembly direction, and no tools. Knots replace screws, which also makes the product easy to take apart for recycling.</p></div>
+</div>
+<div class="figs">
+<figure><img src="/images/caddy_cad.jpg" alt="Fusion 360 model of the hanging bedside caddy"><figcaption>Final caddy design in CAD.</figcaption></figure>
+<figure><img src="/images/measure_height.jpg" alt="Spreadsheet and histogram of 15 caddy height measurements"><figcaption>Caddy height: 11.50 in mean, SD 0.022 in, CI ±0.012 in.</figcaption></figure>
+<figure><img src="/images/measure_thick.jpg" alt="Spreadsheet and histogram of 15 shelf thickness measurements taken with calipers"><figcaption>Shelf thickness by caliper: 0.750 in mean, SD 0.002 in.</figcaption></figure>
+</div>
+
+    </div>
+    <a class="back" href="/projects/">← All projects</a>
+</div>
+</div>
+<footer>
+    <div class="footer-content">
+        <div class="links">
+            <a href="/"><span>Home</span></a>
+            <a href="/projects/"><span>Projects</span></a>
+            <a href="/assets/resume/resume.pdf" target="_blank" rel="noopener noreferrer"><span>Resume</span></a>
+        </div>
+    </div>
+    <div class="license">
+        <p>Rohan Darsi · Mechanical Engineering, UIUC · Class of 2028</p>
+        <p>Site built on the FreeToEngineer portfolio template © 2025 by lowinertia.com, licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1">CC BY 4.0</a></p>
+    </div>
+</footer>
+</body>
+</html>
